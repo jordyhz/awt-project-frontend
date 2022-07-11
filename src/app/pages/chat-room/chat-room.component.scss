@@ -1,0 +1,53 @@
+// .big-div {
+//   height: 850px;
+//   border: 1px solid whitesmoke;
+//   padding: 10px;
+//   margin-bottom: 40px;
+//   border-radius: 5px;
+//   -webkit-box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%),
+//     0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+//   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+//     0 1px 5px 0 rgb(0 0 0 / 12%);
+// }
+
+.participants {
+  height: 900px;
+  border: 1px solid whitesmoke;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%),
+    0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.convo {
+  margin-top: 10px;
+  height: 800px;
+  width: 100%;
+  overflow-y: scroll;
+  border: 1px solid whitesmoke;
+  background-color: #f7f7f7;
+  padding: 5px;
+}
+
+.convo1 {
+  margin-top: 10px;
+  display: inline-flex;
+  width: 100%;
+  border: 1px solid whitesmoke;
+  padding: 5px;
+}
+
+.message_ {
+  display: inline-flex;
+  margin: 1%;
+  border: 1px solid whitesmoke;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%),
+    0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}

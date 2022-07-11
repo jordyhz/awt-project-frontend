@@ -1,1 +1,119 @@
-<p>videos-library works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <h1 style="text-align: center; color: #286090"><b>Videos Library</b></h1>
+      <hr style="background-color: lightgray; height: 1px" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+      <div class="form-outline mb-4">
+        <input
+          [(ngModel)]="search.keyword"
+          [ngModelOptions]="{ standalone: true }"
+          type="text"
+          id="form2Example1"
+          class="form-control"
+        />
+        <label class="form-label" for="form2Example1">Keyword</label>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <div class="form-outline mb-4">
+        <input
+          [(ngModel)]="search.channelId"
+          [ngModelOptions]="{ standalone: true }"
+          type="text"
+          id="form2Example1"
+          class="form-control"
+        />
+        <label class="form-label" for="form2Example1">Channel ID</label>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3">
+      <div class="form-outline mb-4">
+        <select
+          [(ngModel)]="search.type"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+        >
+          <option value="">Select Type</option>
+          <option value="channel">Channel</option>
+          <option value="playlist">Playlist</option>
+          <option value="video">Video</option>
+        </select>
+        <label class="form-label" for="form2Example1">Resource Type</label>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <div class="form-outline mb-4">
+        <input
+          [(ngModel)]="search.maxResults"
+          [ngModelOptions]="{ standalone: true }"
+          type="text"
+          id="form2Example1"
+          class="form-control"
+        />
+        <label class="form-label" for="form2Example1"
+          >Max. Results (1 to 50)</label
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-lg-3 col-md-3">
+      <button
+        [disabled]="search.maxResults === '' || search.keyword === ''"
+        (click)="searchYT()"
+        type="button"
+        class="btn btn-primary btn-block mb-4"
+      >
+        Search video
+      </button>
+    </div>
+  </div>
+  <hr style="background-color: lightgray; height: 1px" />
+</div>
+
+<div class="container">
+  <div class="row">
+    <div
+      *ngFor="let item of response.items; let i = index"
+      class="col-lg-4 col-md-4 videos"
+    >
+      <div class="card h-100">
+        <img
+          (click)="openVideo(item.id.videoId)"
+          style="width: 100%; height: 250px; cursor: pointer"
+          [src]="item.snippet.thumbnails.high.url"
+          alt=""
+        />
+
+        <div
+          (click)="openVideo(item.id.videoId)"
+          class="card-body"
+          style="cursor: pointer"
+        >
+          <p class="card-title texttruncate" style="color: #286090">
+            <b>{{ item.snippet.title }}</b>
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="float-end"> {{ item.id.kind }} </span>
+        </div>
+        <br />
+        <button
+          (click)="share(item)"
+          type="button"
+          class="btn btn-primary btn-block mb-4"
+        >
+          Share to channel
+          <i class="fas fa-share"></i>
+        </button>
+      </div>
+
+      <hr style="background-color: lightgray; height: 1px" />
+    </div>
+  </div>
+</div>

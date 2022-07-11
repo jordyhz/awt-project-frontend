@@ -48,6 +48,21 @@ const routes: Routes = [
         (m) => m.MyChannelsModule
       ),
   },
+  {
+    path: 'my-channels/chatroom/:id',
+    loadChildren: () =>
+      import('./modules/chat-room/chat-room.module').then(
+        (m) => m.ChatRoomModule
+      ),
+  },
+
+  {
+    path: 'my-channels/:id',
+    loadChildren: () =>
+      import('./modules/single-channel/single-channel.module').then(
+        (m) => m.SingleChannelModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,17 @@
+<h1 style="text-align: center; color: #286090" mat-dialog-title>
+  <b>Leave Channel</b>
+</h1>
+<hr style="background-color: lightgray; height: 1px" />
+<div mat-dialog-content>
+  <p>Do you really want to leave the channel ?</p>
+</div>
+<hr style="background-color: lightgray; height: 1px" />
+
+<div mat-dialog-actions class="row">
+  <div class="col-lg-6 col-md-6">
+    <button (click)="leave()" class="btn btn-primary btn-block">Yes</button>
+  </div>
+  <div class="col-lg-6 col-md-6">
+    <button (click)="close()" class="btn btn-primary btn-block">No</button>
+  </div>
+</div>

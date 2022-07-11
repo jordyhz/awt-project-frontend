@@ -1,0 +1,34 @@
+<h1 style="text-align: center; color: #286090" mat-dialog-title>
+  <b>Channel Info</b>
+</h1>
+<hr style="background-color: lightgray; height: 1px" />
+<div mat-dialog-content>
+  <form>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Name</label>
+      <input
+        placeholder="Enter the name of the channel..."
+        [(ngModel)]="name"
+        [ngModelOptions]="{ standalone: true }"
+        type="text"
+        id="form2Example1"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Description</label>
+      <textarea
+        placeholder="Enter the description of the channel..."
+        [(ngModel)]="description"
+        [ngModelOptions]="{ standalone: true }"
+        type="text"
+        id="form2Example1"
+        class="form-control"
+      ></textarea>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button (click)="submit()" class="btn btn-primary btn-block">Submit</button>
+</div>

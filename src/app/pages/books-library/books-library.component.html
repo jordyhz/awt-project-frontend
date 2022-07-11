@@ -1,1 +1,106 @@
-<p>books-library works!</p>
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <h1 style="text-align: center; color: #286090"><b>Books Library</b></h1>
+        <hr style="background-color: lightgray; height: 1px" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <input
+        [(ngModel)]="keyword"
+        [ngModelOptions]="{ standalone: true }"
+        type="text"
+        id="form2Example1"
+        class="form-control"
+      />
+      <label class="form-label" for="form2Example1">Keyword</label>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <div class="form-outline mb-4">
+        <input
+          [(ngModel)]="maxResults"
+          [ngModelOptions]="{ standalone: true }"
+          type="text"
+          id="form2Example1"
+          class="form-control"
+        />
+        <label class="form-label" for="form2Example1"
+          >Max. Results (1 to 39)</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px">
+    <div class="col-lg-3 col-md-3">
+      <button
+        (click)="searchBook()"
+        [disabled]="maxResults === '' || keyword === ''"
+        type="button"
+        class="btn btn-primary btn-block mb-4"
+      >
+        Search Book
+      </button>
+    </div>
+  </div>
+  <hr style="background-color: lightgray; height: 1px" />
+</div>
+
+<div class="container">
+  <div class="row">
+    <div
+      *ngFor="let item of response.items; let i = index"
+      class="col-lg-4 col-md-4"
+    >
+      <div class="card h-100">
+        <img
+          (click)="openBook(item.volumeInfo.previewLink)"
+          style="width: 320px; height: 400px; cursor: pointer"
+          *ngIf="item.volumeInfo.imageLinks"
+          [src]="item.volumeInfo.imageLinks.thumbnail"
+          alt=""
+        />
+        <img
+          (click)="openBook(item.volumeInfo.previewLink)"
+          style="width: 320px; height: 400px; cursor: pointer"
+          *ngIf="!item.volumeInfo.imageLinks"
+          src="../../../assets/images/no-image.png"
+          alt=""
+        />
+        <div
+          style="cursor: pointer"
+          (click)="openBook(item.volumeInfo.previewLink)"
+          class="card-body"
+        >
+          <p class="card-title texttruncate" style="color: #286090">
+            <b>{{ item.volumeInfo.title }}</b>
+          </p>
+        </div>
+        <div class="card-footer">
+          <span
+            *ngFor="let author of item.volumeInfo.authors"
+            class="float-end"
+          >
+            {{ author }}
+          </span>
+        </div>
+        <br />
+        <button
+          (click)="share(item)"
+          type="button"
+          class="btn btn-primary btn-block mb-4"
+        >
+          Share to channel
+          <i class="fas fa-share"></i>
+        </button>
+      </div>
+
+      <hr style="background-color: lightgray; height: 1px" />
+    </div>
+  </div>
+</div>

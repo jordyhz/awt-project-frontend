@@ -1,6 +1,7 @@
 {
   "name": "naxy-share",
   "version": "0.0.0",
+  "proxy": "https://powerful-plains-83584.herokuapp.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,17 +12,22 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.0.0",
+    "@angular/cdk": "^13.3.9",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
     "@angular/core": "~13.0.0",
     "@angular/forms": "~13.0.0",
+    "@angular/material": "^13.3.9",
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
     "@nrwl/angular": "14.1.9",
+    "@types/socket.io-client": "^3.0.0",
+    "axios": "^0.27.2",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "rxjs": "~7.4.0",
+    "socket.io-client": "^4.5.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

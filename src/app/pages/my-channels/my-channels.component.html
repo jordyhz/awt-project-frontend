@@ -1,1 +1,83 @@
-<p>my-channels works!</p>
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <h1 style="text-align: center; color: #286090"><b>My Channels</b></h1>
+        <hr style="background-color: lightgray; height: 1px" />
+      </div>
+    </div>
+
+    <div *ngIf="channels.length > 0" class="row">
+      <div
+        *ngFor="let channel of channels; let i = index"
+        class="col-lg-4 col-md-4 videos"
+      >
+        <div class="card h-100 channel">
+          <img
+            (click)="goToChannel(channel)"
+            style="width: 100%; height: 100%; cursor: pointer"
+            src="../../../assets/images/naxyshare.png"
+            alt=""
+          />
+          <div class="card-body">
+            <h4
+              (click)="goToChannel(channel)"
+              style="cursor: pointer"
+              class="card-title texttruncate"
+            >
+              <b>{{ channel.title }}</b>
+            </h4>
+          </div>
+          <div class="card-footer">
+            <span class="float-end">
+              {{ channel.description }}
+            </span>
+          </div>
+          <br />
+          <button
+            (click)="leaveChannel(channel)"
+            *ngIf="!isCreator(channel)"
+            type="button"
+            class="btn btn-primary btn-block mb-4"
+          >
+            Leave Channel
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+          <button
+            (click)="deleteChannel(channel)"
+            *ngIf="isCreator(channel)"
+            type="button"
+            class="btn btn-primary btn-block mb-4"
+          >
+            Delete Channel
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="channels.length == 0" class="row">
+      <h5
+        style="
+          text-align: center;
+          font-size: larger;
+          color: gray;
+          font-style: italic;
+        "
+      >
+        You're not a member of any channel.
+      </h5>
+    </div>
+
+    <div class="row">
+      <hr style="background-color: lightgray; height: 1px" />
+      <div class="col-lg-4 col-md-4"></div>
+      <div class="col-lg-4 col-md-4">
+        <button (click)="createChannel()" class="btn btn-primary btn-block">
+          Create A Channel
+        </button>
+      </div>
+      <div class="col-lg-4 col-md-4"></div>
+    </div>
+  </div>
+</div>

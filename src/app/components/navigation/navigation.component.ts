@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -12,11 +13,24 @@ export class NavigationComponent implements OnInit {
   channels = false;
   books = false;
   videos = false;
+  userToken = sessionStorage.getItem('user');
+  loggedIn = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.home = true;
+    if (this.userToken) {
+      this.loggedIn = true;
+    }
+  }
+
+  ngOnChanges() {
+    this.userToken = JSON.stringify(sessionStorage.getItem('user'));
+    if (this.userToken !== null || this.userToken !== '') {
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
   }
 
   homeActive() {
@@ -66,5 +80,14 @@ export class NavigationComponent implements OnInit {
     this.channels = true;
     this.books = false;
     this.videos = false;
+  }
+
+  logout() {
+    sessionStorage.removeItem('user');
+    this.loggedIn = false;
+    this.userToken = '';
+    console.log(this.userToken);
+
+    this.router.navigate(['/home']);
   }
 }

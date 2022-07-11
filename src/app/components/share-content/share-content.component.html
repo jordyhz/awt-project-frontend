@@ -1,0 +1,30 @@
+<h1 style="text-align: center; color: #286090" mat-dialog-title>
+  <b>Share to Channel</b>
+</h1>
+<hr style="background-color: lightgray; height: 1px" />
+<div mat-dialog-content>
+  <form>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Channel Name:</label>
+      <select
+        [(ngModel)]="name"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-control"
+      >
+        <option value="">Select One...</option>
+        <option *ngFor="let item of channels" [value]="item._id">
+          {{ item.title }}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button
+    (click)="submit()"
+    [disabled]="name === ''"
+    class="btn btn-primary btn-block"
+  >
+    Submit
+  </button>
+</div>
