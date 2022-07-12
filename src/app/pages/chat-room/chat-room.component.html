@@ -48,26 +48,28 @@
     </div>
     <div class="col-lg-9 col-md-9 participants">
       <div class="convo">
-        <div *ngFor="let msg of messages" style="width: 100%">
-          <div class="message_">
-            <img
-              style="
-                height: 35px;
-                width: 35px;
-                border-radius: 50%;
-                margin-right: 10px;
-              "
-              src="../../../assets/images/profile.png"
-              alt=""
-            />
-            <div style="display: block">
-              <p>
-                <b> {{ msg.sender }} </b> - {{ msg.date }} at {{ msg.time }}
-              </p>
-              <p>{{ msg.content }}</p>
+        <div style="width: 100%">
+          <div *ngFor="let msg of messages">
+            <div class="message_">
+              <img
+                style="
+                  height: 35px;
+                  width: 35px;
+                  border-radius: 50%;
+                  margin-right: 10px;
+                "
+                src="../../../assets/images/profile.png"
+                alt=""
+              />
+              <div style="display: block">
+                <p>
+                  <b> {{ msg.sender }} </b> - {{ msg.date }} at {{ msg.time }}
+                </p>
+                <p>{{ msg.content }}</p>
+              </div>
             </div>
+            <br />
           </div>
-          <br />
         </div>
       </div>
       <div class="convo1">

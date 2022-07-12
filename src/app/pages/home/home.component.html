@@ -132,5 +132,25 @@
   <div style="text-align: center; margin-top: 40px" class="row">
     <h2>Our <b style="color: #286090">Team</b></h2>
     <hr style="background-color: lightgray; height: 1px" />
+    <div style="width: 100%; display: inline-flex">
+      <div
+        style="display: block; margin-right: 4%; margin-left: 3%"
+        *ngFor="let item of teams"
+      >
+        <img
+          style="
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            margin-bottom: 5%;
+          "
+          src="../../../assets/images/profile.png"
+          alt=""
+        />
+        <h3>
+          <b style="color: #286090">{{ item.name }}</b>
+        </h3>
+      </div>
+    </div>
   </div>
 </div>

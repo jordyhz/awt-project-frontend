@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Channel } from 'src/app/models/channel';
 import { ChannelService } from 'src/app/services/channel.service';
 
@@ -17,7 +18,8 @@ export class LeaveChannelComponent implements OnInit {
     public dialogRef: MatDialogRef<LeaveChannelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private channelService: ChannelService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +34,9 @@ export class LeaveChannelComponent implements OnInit {
       .leaveChannel(this.userToken, data)
       .then((resp: any) => {
         if (resp.status === 'success') {
+          this.toastr.success('Channel left successfully', 'Success', {
+            timeOut: 2500,
+          });
           this.dialogRef.close('yes');
         }
       })

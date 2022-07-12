@@ -10,8 +10,11 @@ import { ShareContentComponent } from 'src/app/components/share-content/share-co
   styleUrls: ['./books-library.component.scss'],
 })
 export class BooksLibraryComponent implements OnInit {
-  keyword = '';
-  maxResults = '5';
+  search: any = {
+    keyword: '',
+    maxResults: 5,
+  };
+
   response: any = {};
   userToken = sessionStorage.getItem('user');
 
@@ -30,9 +33,9 @@ export class BooksLibraryComponent implements OnInit {
   searchBook() {
     let url = 'https://www.googleapis.com/books/v1/volumes?';
     let urlParams = new HttpParams()
-      .set('q', this.keyword)
+      .set('q', this.search.keyword)
       .set('key', 'AIzaSyBiOlaEySl5mqX3L8LXXf5AXejeVkHnvrY')
-      .set('maxResults', this.maxResults);
+      .set('maxResults', this.search.maxResults);
 
     const options = { params: urlParams };
 

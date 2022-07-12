@@ -16,7 +16,7 @@ export class VideosLibraryComponent implements OnInit {
     keyword: '',
     channelId: '',
     type: '',
-    maxResults: '5',
+    maxResults: 5,
   };
   userToken = sessionStorage.getItem('user');
   response: any = {};

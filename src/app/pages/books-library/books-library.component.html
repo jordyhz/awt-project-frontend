@@ -10,28 +10,28 @@
 
   <div class="row">
     <div class="col-lg-6 col-md-6">
+      <label class="form-label" for="form2Example1">Keyword*</label>
       <input
-        [(ngModel)]="keyword"
+        [(ngModel)]="search.keyword"
         [ngModelOptions]="{ standalone: true }"
         type="text"
         id="form2Example1"
         class="form-control"
       />
-      <label class="form-label" for="form2Example1">Keyword</label>
     </div>
 
     <div class="col-lg-6 col-md-6">
       <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1"
+          >Max. Results (1 to 39)*</label
+        >
         <input
-          [(ngModel)]="maxResults"
+          [(ngModel)]="search.maxResults"
           [ngModelOptions]="{ standalone: true }"
           type="text"
           id="form2Example1"
           class="form-control"
         />
-        <label class="form-label" for="form2Example1"
-          >Max. Results (1 to 39)</label
-        >
       </div>
     </div>
   </div>
@@ -40,7 +40,11 @@
     <div class="col-lg-3 col-md-3">
       <button
         (click)="searchBook()"
-        [disabled]="maxResults === '' || keyword === ''"
+        [disabled]="
+          search.maxResults > 39 ||
+          search.keyword === '' ||
+          search.maxResults === ''
+        "
         type="button"
         class="btn btn-primary btn-block mb-4"
       >

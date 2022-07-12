@@ -6,7 +6,7 @@
       <hr style="background-color: lightgray; height: 1px" />
       <form>
         <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example1">First Name</label>
+          <label class="form-label" for="form2Example1">First Name*</label>
           <input
             [(ngModel)]="firstName"
             [ngModelOptions]="{ standalone: true }"
@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example1">Last Name</label>
+          <label class="form-label" for="form2Example1">Last Name*</label>
           <input
             [(ngModel)]="lastName"
             [ngModelOptions]="{ standalone: true }"
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example1">Email</label>
+          <label class="form-label" for="form2Example1">Email*</label>
           <input
             [(ngModel)]="email"
             [ngModelOptions]="{ standalone: true }"
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-outline mb-4">
-          <label class="form-label" for="form2Example2">Password</label>
+          <label class="form-label" for="form2Example2">Password*</label>
           <input
             [(ngModel)]="password"
             [ngModelOptions]="{ standalone: true }"
@@ -49,6 +49,7 @@
           />
         </div>
         <button
+          [disabled]="!firstName || !email || !lastName || !password"
           (click)="submit()"
           type="button"
           class="btn btn-primary btn-block mb-4"

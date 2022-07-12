@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Channel } from 'src/app/models/channel';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -18,7 +19,8 @@ export class AllChannelsComponent implements OnInit {
   constructor(
     private channelService: ChannelService,
     private authenticationApi: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -83,6 +85,9 @@ export class AllChannelsComponent implements OnInit {
       .joinChannel(this.userToken, data)
       .then((response) => {
         console.log(response);
+        this.toastr.success('Channel joined successfully', 'Success', {
+          timeOut: 2500,
+        });
         this.router.navigate(['/my-channels']);
       })
       .catch((e) => {

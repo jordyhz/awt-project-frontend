@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Channel } from 'src/app/models/channel';
 import { ChannelService } from 'src/app/services/channel.service';
 
@@ -17,7 +18,8 @@ export class DeleteChannelComponent implements OnInit {
     public dialogRef: MatDialogRef<DeleteChannelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private channelService: ChannelService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +31,9 @@ export class DeleteChannelComponent implements OnInit {
       .deleteChannel(this.userToken, this.channel._id)
       .then((resp: any) => {
         if (resp.status === 'success') {
+          this.toastr.success('Channel deleted successfully', 'Success', {
+            timeOut: 2500,
+          });
           this.dialogRef.close('yes');
         }
       })

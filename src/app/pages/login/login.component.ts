@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket, io } from 'socket.io-client';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationApi: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -41,10 +43,17 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userFn', newUser.firstName);
           sessionStorage.setItem('userLn', newUser.lastName);
           window.location.replace('/home');
+        } else if (response.status === 'error') {
+          this.toastr.error(response.error, 'Login Error', {
+            timeOut: 2500,
+          });
         }
       })
       .catch((e) => {
         console.log(e);
+        this.toastr.error('Something went wrong', 'Login Error', {
+          timeOut: 2500,
+        });
       });
   }
 }

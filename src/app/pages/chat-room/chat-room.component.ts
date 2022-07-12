@@ -43,7 +43,11 @@ export class ChatRoomComponent implements OnInit {
           let time = new Date(msg.createdAt);
 
           let date =
-            time.getDate() + '/' + time.getMonth() + '/' + time.getFullYear();
+            time.getDate() +
+            '/' +
+            (time.getMonth() + 1) +
+            '/' +
+            time.getFullYear();
 
           let minutes =
             time.getMinutes().toString().length == 1
@@ -65,8 +69,14 @@ export class ChatRoomComponent implements OnInit {
 
       this.socket.on('message', (message) => {
         let time = new Date();
+
         let date =
-          time.getDate() + '/' + time.getMonth() + '/' + time.getFullYear();
+          time.getDate() +
+          '/' +
+          (time.getMonth() + 1) +
+          '/' +
+          time.getFullYear();
+
         let minutes =
           time.getMinutes().toString().length == 1
             ? '0' + time.getMinutes()

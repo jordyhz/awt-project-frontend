@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Channel } from 'src/app/models/channel';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -24,7 +25,8 @@ export class ShareContentComponent implements OnInit {
     private channelService: ChannelService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private authenticationApi: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +90,14 @@ export class ShareContentComponent implements OnInit {
         .shareVideo(this.userToken, data)
         .then((response: any) => {
           this.dialogRef.close();
+          this.router.navigate(['my-channels/' + data.roomId]);
+          this.toastr.success(
+            'Video shared successfully to channel',
+            'Success',
+            {
+              timeOut: 2500,
+            }
+          );
         })
         .catch((e) => {
           console.log(e);
@@ -108,6 +118,14 @@ export class ShareContentComponent implements OnInit {
         .shareBook(this.userToken, data)
         .then((response: any) => {
           this.dialogRef.close();
+          this.router.navigate(['my-channels/' + data.roomId]);
+          this.toastr.success(
+            'Book shared successfully to channel',
+            'Success',
+            {
+              timeOut: 2500,
+            }
+          );
         })
         .catch((e) => {
           console.log(e);

@@ -19,6 +19,8 @@ import { LeaveChannelComponent } from './components/leave-channel/leave-channel.
 import { SingleChannelComponent } from './pages/single-channel/single-channel.component';
 import { VideoDialogComponent } from './components/video-dialog/video-dialog.component';
 import { ChatRoomComponent } from './pages/chat-room/chat-room.component';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,9 @@ import { ChatRoomComponent } from './pages/chat-room/chat-room.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
