@@ -32,14 +32,13 @@
     "rxjs": "~7.4.0",
     "socket.io-client": "^4.5.1",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@angular/cli": "~13.0.3",
+    "@angular/compiler-cli": "~13.0.0",
+    "typescript": "~4.4.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.0.3",
-
-    "@angular/cli": "~13.0.3",
-    "@angular/compiler-cli": "~13.0.0",
-    "typescript": "~4.4.3",
     "@nrwl/nx-cloud": {},
     "@nrwl/workspace": "14.1.9",
     "@types/jasmine": "~3.10.0",
@@ -51,9 +50,5 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "nx": "14.1.9"
-  },
-  "engines": {
-    "node": "14.15.1",
-    "npm": "6.14.8"
   }
 }
