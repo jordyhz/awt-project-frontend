@@ -1,7 +1,6 @@
 {
   "name": "naxy-share",
   "version": "0.0.0",
-  "proxy": "https://powerful-plains-83584.herokuapp.com",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
