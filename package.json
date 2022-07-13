@@ -4,10 +4,11 @@
   "proxy": "https://powerful-plains-83584.herokuapp.com",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build — prod"
   },
   "private": true,
   "dependencies": {
@@ -15,6 +16,9 @@
     "@angular/cdk": "^13.3.9",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
+    "@angular/cli": "~13.0.3",
+    "@angular/compiler-cli": "~13.0.0",
+    "typescript": "~4.4.3",
     "@angular/core": "~13.0.0",
     "@angular/forms": "~13.0.0",
     "@angular/material": "^13.3.9",
@@ -48,7 +52,10 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "nx": "14.1.9",
-    "typescript": "~4.4.3",
-    "node": "14.x"
+    "typescript": "~4.4.3"
+  },
+  "engines": {
+    "node": "14.15.1",
+    "npm": "6.14.8"
   }
 }
