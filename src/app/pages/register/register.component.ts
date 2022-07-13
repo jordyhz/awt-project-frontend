@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
             timeOut: 2500,
           });
         } else if (response.error === 'email is not valid') {
-          this.toastr.error(response.error, 'Registration Error', {
+          this.toastr.error('Email is not valid', 'Registration Error', {
             timeOut: 2500,
           });
         } else if ((response.status = 11000)) {
