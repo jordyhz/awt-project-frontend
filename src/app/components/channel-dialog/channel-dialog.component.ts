@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class ChannelDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ChannelDialogComponent>,
     private channelService: ChannelService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -33,6 +35,9 @@ export class ChannelDialogComponent implements OnInit {
       .createChannel$(data, this.userToken)
       .then((response: any) => {
         if ((response.status = 201)) {
+          this.toastr.success('Channel created successfully', 'Success', {
+            timeOut: 2500,
+          });
           this.dialogRef.close();
         }
       })

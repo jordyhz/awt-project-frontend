@@ -17,7 +17,9 @@ import { ChannelService } from 'src/app/services/channel.service';
 export class MyChannelsComponent implements OnInit {
   userToken = sessionStorage.getItem('user');
   channels: Channel[] = [];
+  _channels: Channel[] = [];
   user!: User;
+  keyword = '';
 
   constructor(
     public dialog: MatDialog,
@@ -46,6 +48,7 @@ export class MyChannelsComponent implements OnInit {
           this.compare(rooms, this.user.joinedRooms);
         } else {
           this.channels = [];
+          this._channels = [];
         }
       })
       .catch((e) => {
@@ -54,13 +57,27 @@ export class MyChannelsComponent implements OnInit {
   }
 
   compare(arr1: any[], arr2: any[]) {
-    arr1.forEach((a: Channel, i) => {
-      arr2.forEach((b: any) => {
-        if (a._id === b._id) {
-          this.channels[i] = a;
+    for (let i = 0; i < arr1.length; i++) {
+      for (let j = 0; j < arr2.length; j++) {
+        if (arr1[i]._id === arr2[j]._id) {
+          this.channels[j] = arr1[i];
+          this._channels[j] = arr1[i];
+        }
+      }
+    }
+  }
+
+  search() {
+    if (this.keyword === '') {
+      this._channels = this.channels;
+    } else if (this.keyword !== '') {
+      this._channels = [];
+      this.channels.forEach((ch) => {
+        if (ch.title?.toLowerCase().includes(this.keyword.toLowerCase())) {
+          this._channels.push(ch);
         }
       });
-    });
+    }
   }
 
   isCreator(channel: Channel): boolean {
@@ -110,6 +127,11 @@ export class MyChannelsComponent implements OnInit {
             this.channels.splice(i, 1);
           }
         });
+        this._channels.forEach((chann, i) => {
+          if (chann._id === channel._id) {
+            this._channels.splice(i, 1);
+          }
+        });
       }
     });
   }
@@ -127,6 +149,11 @@ export class MyChannelsComponent implements OnInit {
         this.channels.forEach((chann, i) => {
           if (chann._id === channel._id) {
             this.channels.splice(i, 1);
+          }
+        });
+        this._channels.forEach((chann, i) => {
+          if (chann._id === channel._id) {
+            this._channels.splice(i, 1);
           }
         });
       }

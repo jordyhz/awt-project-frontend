@@ -13,8 +13,10 @@ import { ChannelService } from 'src/app/services/channel.service';
 })
 export class AllChannelsComponent implements OnInit {
   channels: Channel[] = [];
+  _channels: Channel[] = [];
   userToken = sessionStorage.getItem('user');
   user!: User;
+  keyword = '';
 
   constructor(
     private channelService: ChannelService,
@@ -39,12 +41,11 @@ export class AllChannelsComponent implements OnInit {
       .getAllChannels(this.userToken)
       .then((resp: any) => {
         let rooms: Channel[] = resp.rooms;
-        console.log(rooms);
-
         if (this.user.joinedRooms.length > 0) {
           this.compare(rooms, this.user.joinedRooms);
         } else {
           this.channels = resp.rooms;
+          this._channels = this.channels;
         }
       })
       .catch((e) => {
@@ -64,6 +65,20 @@ export class AllChannelsComponent implements OnInit {
     });
 
     this.channels = arr1.filter((x) => !arr3.includes(x));
+    this._channels = this.channels;
+  }
+
+  search() {
+    if (this.keyword === '') {
+      this._channels = this.channels;
+    } else if (this.keyword !== '') {
+      this._channels = [];
+      this.channels.forEach((ch) => {
+        if (ch.title?.toLowerCase().includes(this.keyword.toLowerCase())) {
+          this._channels.push(ch);
+        }
+      });
+    }
   }
 
   getUserInfo() {

@@ -77,6 +77,20 @@ export class ShareContentComponent implements OnInit {
   }
 
   submit() {
+    let cha: Channel = {
+      joinedUsers: [],
+      messages: [],
+      books: [],
+      videos: [],
+      title: '',
+    };
+
+    this.channels.forEach((ch) => {
+      if (ch._id === this.name) {
+        cha = ch;
+      }
+    });
+
     if (this._video) {
       let data = {
         roomId: this.name,
@@ -86,22 +100,35 @@ export class ShareContentComponent implements OnInit {
         videoThumbnail: this._video.snippet.thumbnails.high.url,
       };
 
-      this.channelService
-        .shareVideo(this.userToken, data)
-        .then((response: any) => {
-          this.dialogRef.close();
-          this.router.navigate(['my-channels/' + data.roomId]);
-          this.toastr.success(
-            'Video shared successfully to channel',
-            'Success',
-            {
-              timeOut: 2500,
-            }
-          );
-        })
-        .catch((e) => {
-          console.log(e);
+      const check = cha.videos.every(
+        (vid) =>
+          vid.videoId !== data.videoId &&
+          vid.videoTitle !== data.videoTitle &&
+          vid.videoThumbnail !== data.videoThumbnail
+      );
+
+      if (check) {
+        this.channelService
+          .shareVideo(this.userToken, data)
+          .then((response: any) => {
+            this.dialogRef.close();
+            this.router.navigate(['my-channels/' + data.roomId]);
+            this.toastr.success(
+              'Video shared successfully to channel',
+              'Success',
+              {
+                timeOut: 2500,
+              }
+            );
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else if (!check) {
+        this.toastr.error('Video already exists in channel', 'Error', {
+          timeOut: 2500,
         });
+      }
     } else if (this._book) {
       let data = {
         roomId: this.name,
@@ -114,22 +141,35 @@ export class ShareContentComponent implements OnInit {
         bookAuthors: this._book.volumeInfo.authors,
       };
 
-      this.channelService
-        .shareBook(this.userToken, data)
-        .then((response: any) => {
-          this.dialogRef.close();
-          this.router.navigate(['my-channels/' + data.roomId]);
-          this.toastr.success(
-            'Book shared successfully to channel',
-            'Success',
-            {
-              timeOut: 2500,
-            }
-          );
-        })
-        .catch((e) => {
-          console.log(e);
+      const check = cha.books.every(
+        (book) =>
+          book.bookTitle !== data.bookTitle &&
+          book.bookImageLink !== data.bookImageLink &&
+          book.bookPreviewLink !== data.bookPreviewLink
+      );
+
+      if (check) {
+        this.channelService
+          .shareBook(this.userToken, data)
+          .then((response: any) => {
+            this.dialogRef.close();
+            this.router.navigate(['my-channels/' + data.roomId]);
+            this.toastr.success(
+              'Book shared successfully to channel',
+              'Success',
+              {
+                timeOut: 2500,
+              }
+            );
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else if (!check) {
+        this.toastr.error('Book already exists in channel', 'Error', {
+          timeOut: 2500,
         });
+      }
     }
   }
 }

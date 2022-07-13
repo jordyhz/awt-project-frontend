@@ -1,11 +1,11 @@
 <h1 style="text-align: center; color: #286090" mat-dialog-title>
-  <b>Channel Info</b>
+  <b>Create Channel</b>
 </h1>
 <hr style="background-color: lightgray; height: 1px" />
 <div mat-dialog-content>
   <form>
     <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example1">Name</label>
+      <label class="form-label" for="form2Example1">Name*</label>
       <input
         placeholder="Enter the name of the channel..."
         [(ngModel)]="name"
@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-outline mb-4">
-      <label class="form-label" for="form2Example1">Description</label>
+      <label class="form-label" for="form2Example1">Description*</label>
       <textarea
         placeholder="Enter the description of the channel..."
         [(ngModel)]="description"
@@ -30,5 +30,11 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <button (click)="submit()" class="btn btn-primary btn-block">Submit</button>
+  <button
+    [disabled]="!name || !description"
+    (click)="submit()"
+    class="btn btn-primary btn-block"
+  >
+    Submit
+  </button>
 </div>

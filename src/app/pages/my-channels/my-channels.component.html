@@ -7,9 +7,30 @@
       </div>
     </div>
 
-    <div *ngIf="channels.length > 0" class="row">
+    <div
+      class="row"
+      style="margin-top: 30px; margin-bottom: 30px"
+      *ngIf="channels.length !== 0"
+    >
+      <div class="col-lg-12 col-md-12">
+        <div class="form-outline mb-4">
+          <label class="form-label" for="form2Example1">Keyword</label>
+          <input
+            [(ngModel)]="keyword"
+            placeholder="Search..."
+            (keyup)="search()"
+            [ngModelOptions]="{ standalone: true }"
+            type="text"
+            id="form2Example1"
+            class="form-control"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="_channels.length > 0" class="row">
       <div
-        *ngFor="let channel of channels; let i = index"
+        *ngFor="let channel of _channels; let i = index"
         class="col-lg-4 col-md-4 videos"
       >
         <div class="card h-100 channel">
@@ -53,7 +74,21 @@
             <i class="fas fa-trash-alt"></i>
           </button>
         </div>
+        <hr style="background-color: lightgray; height: 1px" />
       </div>
+    </div>
+
+    <div *ngIf="_channels.length == 0 && channels.length > 0" class="row">
+      <h5
+        style="
+          text-align: center;
+          font-size: larger;
+          color: gray;
+          font-style: italic;
+        "
+      >
+        No channel matches your search.
+      </h5>
     </div>
 
     <div *ngIf="channels.length == 0" class="row">
@@ -69,7 +104,7 @@
       </h5>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <hr style="background-color: lightgray; height: 1px" />
       <div class="col-lg-4 col-md-4"></div>
       <div class="col-lg-4 col-md-4">
@@ -78,6 +113,14 @@
         </button>
       </div>
       <div class="col-lg-4 col-md-4"></div>
+    </div> -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <button (click)="createChannel()" class="btn btn-primary buuton">
+          <i class="fas fa-plus fa-2x"></i>
+        </button>
+      </div>
     </div>
   </div>
 </div>

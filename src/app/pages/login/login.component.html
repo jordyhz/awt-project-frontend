@@ -31,6 +31,7 @@
 
         <!-- Submit button -->
         <button
+          [disabled]="!email || !password"
           (click)="login()"
           type="button"
           class="btn btn-primary btn-block mb-4"

@@ -134,22 +134,39 @@
     <hr style="background-color: lightgray; height: 1px" />
     <div style="width: 100%; display: inline-flex">
       <div
-        style="display: block; margin-right: 4%; margin-left: 3%"
+        style="display: block; margin-right: 0; margin-left: 5%"
         *ngFor="let item of teams"
       >
         <img
+          *ngIf="!item.picture"
           style="
-            height: 150px;
-            width: 150px;
+            height: 180px;
+            width: 170px;
             border-radius: 50%;
-            margin-bottom: 5%;
+            margin-bottom: 20px;
           "
           src="../../../assets/images/profile.png"
           alt=""
         />
+        <img
+          *ngIf="item.picture"
+          style="
+            height: 180px;
+            width: 170px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+          "
+          [src]="item.picture"
+          alt=""
+        />
         <h3>
-          <b style="color: #286090">{{ item.name }}</b>
+          <b>{{ item.name }}</b>
         </h3>
+        <h4>
+          <a *ngIf="item.linkedIn" [href]="item.linkedIn"
+            >LinkedIn <i class="fab fa-linkedin"></i
+          ></a>
+        </h4>
       </div>
     </div>
   </div>
